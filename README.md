@@ -9,7 +9,7 @@ This project contains six Python scripts designed to solve tweets analysis probl
 - **src/**: Directory containing Python source code.
 - **utils/**: Directory containing main any utility functions that we may need.
 
-### NOTE: The data file will not be uploaded as I am not certain on whether this data is private.
+#### NOTE: The data file will not be uploaded as I am not certain on whether this data is private.
 
 ## Scripts
 
@@ -46,9 +46,14 @@ cd tweets-analysis
 bash init-project.sh my-venv
 ```
 
-### Note: Depending on your OS (or if you have conda) you may need to update line 11 with: python3 -> python
+#### Note: Depending on your OS (or if you have conda) you may need to update line 11 with: python3 -> python
 
-4. Make sure to download and unzip the JSON data file and save it under:
+
+4. Create data folder:
+```bash
+mkdir data
+```
+5. Make sure to download and unzip the JSON data file and save it under:
 `data/farmers-protest-tweets-2021-2-4.json`
 
 Each script can be executed independently to solve its respective problem. Ensure that the `data` folder and `utils.py` file are accessible for the scripts to run successfully.
