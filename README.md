@@ -46,7 +46,9 @@ cd tweets-analysis
 bash init-project.sh my-venv
 ```
 
-3. Make sure to download and unzip the JSON data file and save it under:
+### Note: Depending on your OS (or if you have conda) you may need to update line 11 with: python3 -> python
+
+4. Make sure to download and unzip the JSON data file and save it under:
 `data/farmers-protest-tweets-2021-2-4.json`
 
 Each script can be executed independently to solve its respective problem. Ensure that the `data` folder and `utils.py` file are accessible for the scripts to run successfully.
