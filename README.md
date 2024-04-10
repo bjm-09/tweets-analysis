@@ -7,7 +7,6 @@ This project contains six Python scripts designed to solve tweets analysis probl
 
 - **data/**: Directory containing data files.
 - **src/**: Directory containing Python source code.
-- **utils/**: Directory containing main any utility functions that we may need.
 
 #### NOTE: The data file will not be uploaded as I am not certain on whether this data is private.
 
