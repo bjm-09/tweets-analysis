@@ -8,7 +8,7 @@ fi
 
 # Step 1: Create virtual environment
 echo "Creating virtual environment..."
-python -m venv "$1"
+python3 -m venv "$1"
 
 # Check if virtual environment creation was successful
 if [ $? -ne 0 ]; then
