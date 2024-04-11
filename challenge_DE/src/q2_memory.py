@@ -2,6 +2,7 @@ from typing import List, Tuple
 import json
 from emoji import EMOJI_DATA
 from collections import Counter
+from memory_profiler import profile 
 
 # With this function we will read the file one line at a time to optimize memory usage
 def tweet_generator(file_path: str):
@@ -9,6 +10,7 @@ def tweet_generator(file_path: str):
         for line in file:
             yield json.loads(line)
 
+@profile
 def q2_memory(file_path: str) -> List[Tuple[str, int]]:
     
     # Counter objects provide time optimized methods
@@ -27,3 +29,8 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
 
     # Using the most_common method we retreive the top 10 most used emojis across all tweets
     return emojis_counter.most_common(10)
+
+file_path = '/Users/bjuanm/Desktop/Interviews/LATAM/tweets-analysis/data/farmers-protest-tweets-2021-2-4.json'
+
+
+print(q2_memory(file_path=file_path))

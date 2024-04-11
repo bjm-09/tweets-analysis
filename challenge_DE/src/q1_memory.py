@@ -2,6 +2,7 @@ from typing import List, Tuple
 from datetime import datetime
 import json
 from collections import defaultdict
+from memory_profiler import profile 
 
 # With this function we will read the file one line at a time to optimize memory usage
 def tweet_generator(file_path: str):
@@ -11,6 +12,7 @@ def tweet_generator(file_path: str):
 
 
 # In this function I reused the code for the q1_time with a few adjustments to use the helper function:
+@profile
 def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
 
     agg_dict =  defaultdict(lambda: defaultdict(int))
@@ -37,3 +39,8 @@ def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
     # Previous step left us only with the 10 dates with most tweets
     ## Now we need to get the user with most tweets from each date to match the expected output
     return [(date, max(users, key=users.get)) for date, users in top_10_dates]
+
+file_path = '/Users/bjuanm/Desktop/Interviews/LATAM/tweets-analysis/data/farmers-protest-tweets-2021-2-4.json'
+
+
+print(q1_memory(file_path=file_path))

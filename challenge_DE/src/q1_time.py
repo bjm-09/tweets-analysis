@@ -2,7 +2,9 @@ from typing import List, Tuple
 from datetime import datetime
 import json 
 from collections import defaultdict
+from memory_profiler import profile 
 
+@profile
 def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
 
     # Using a defaultdict we will have constant-time complexity when we insert values and perform lookups
@@ -36,3 +38,9 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
 
     except FileNotFoundError as e:
         return(f"File not found: {e}")
+
+
+file_path = '/Users/bjuanm/Desktop/Interviews/LATAM/tweets-analysis/data/farmers-protest-tweets-2021-2-4.json'
+
+
+print(q1_time(file_path=file_path))
