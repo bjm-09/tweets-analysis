@@ -5,3 +5,4 @@ gcp-creds.json
 .env
 .venv/
 *.pyc
+*.dat
