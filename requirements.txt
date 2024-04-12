@@ -1,1 +1,4 @@
-pandas
+memory-profiler==0.61.0
+emoji==2.11.0
+matplotlib==3.8.4
+pytest==8.1.1

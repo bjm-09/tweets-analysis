@@ -1,2 +1,8 @@
-.venv/
+venv/
 data/
+*.json
+gcp-creds.json
+.env
+.venv/
+*.pyc
+*.dat
