@@ -20,9 +20,9 @@ This project contains six Python scripts designed to solve tweets analysis probl
 
 1. **q{n}time.py**: These files solve their respective problems with a focus on time optimization.
 
-## Utils
+### Tests script
 
-- **utils.py**: Contains utility functions used across the scripts.
+1. We have a pytest script with the objective of testing that every pair of outputs matches correctly.
 
 ## Data
 
