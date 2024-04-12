@@ -3,31 +3,41 @@ from datetime import datetime
 import json 
 from collections import defaultdict
 from memory_profiler import profile 
+import time 
 
 @profile
 def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
 
+    """
+    I tried parallelizing this function as well so that it would be time optimized (like the following ones),
+    But I think I wasn't being able to do  it properly as running parallel functions and merging the results
+    was taking longer than just do it sequentially. Perhaps because of the double complexity of finding 
+    the most common date and also retrieving the user with most tweets on it.
+    So I am finally leaving the solution that runs faster.
+    """
+
     # Using a defaultdict we will have constant-time complexity when we insert values and perform lookups
     agg_dict = defaultdict(lambda: defaultdict(int))
 
-    # Open json file with tweets data to loop through every record
+    # try-catch in case the file doesn't exist or the path is wrong
     try:
+        # Open json file with tweets data to loop through every record
         with open(file_path, 'r') as file:
             for line in file:
                 tweet = json.loads(line)
                 
                 # We are interested only on dates, not datetimes so we create a key for every date
-                # We also create a key with every date-key with the username, as we need to keep track of how many tweets each user has
+                # We also create a key with every date-key with the username, as we need to keep track of how many 
+                # tweets each user has on that specific day
                 try:
                     date = datetime.strptime(tweet['date'], '%Y-%m-%dT%H:%M:%S+00:00').date()
+                    username = tweet['user']['username']
+                    agg_dict[date][username] += 1
 
                 except ValueError as e:
                     print(f"Error parsing date for tweet: {e}")
                     continue  # Skip this record and continue to the next one
 
-                username = tweet['user']['username']
-                agg_dict[date][username] += 1
-        
         # Sort our dictionary by the total tweets, in descending order
         ## We sort the values only once, at the end
         top_10_dates = sorted(agg_dict.items(), key=lambda x: sum(x[1].values()), reverse=True)[:10]
@@ -40,7 +50,16 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
         return(f"File not found: {e}")
 
 
-file_path = '/Users/bjuanm/Desktop/Interviews/LATAM/tweets-analysis/data/farmers-protest-tweets-2021-2-4.json'
+if __name__=='__main__':
 
+    start_time = time.time()
 
-print(q1_time(file_path=file_path))
+    file_path = '/Users/bjuanm/Desktop/Interviews/LATAM/tweets-analysis/data/farmers-protest-tweets-2021-2-4.json'
+
+    print(q1_time(file_path=file_path))
+
+    end_time = time.time()
+
+    total_time = round(end_time - start_time , 2)
+
+    print(f"The job finished running un {total_time} seconds.")
